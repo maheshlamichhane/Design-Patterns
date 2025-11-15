@@ -1,0 +1,238 @@
+Creational Design Pattern
+-> Singleton is a creational design pattern that lets you ensure that a class has only one
+instance, while providing a global access point to this instance.
+
+Singleton Design Pattern
+-> The Singleton Pattern ensures that:
+ * Only one instance of a class is created
+ * This instance is globally accessible
+ * The instance is lazily or eagerly controlled
+
+Why do we need Singleton?
+-> Some components must exist only once in an application because:
+ * They represent a shared resource
+ * Creating multiple instances is wrong or expensive
+ * Instance must be globally accessible
+
+Real Examples in Software:
+* Database connection manager
+* Logger
+* Cache manager
+* Configuration reader
+* Thread pool
+* Registry objects
+* File system manager
+
+Key Characteristics of Singleton
+-> A correct Singleton should have:
+✔ Private constructor → avoids outside instantiation
+✔ Static reference to the single instance
+✔ Public static method to access the instance
+✔ Thread safety if used in multithreaded environments
+
+Implementation Types of Singleton
+
+i. Lazy Initialization (NOT Thread-Safe)
+   public class Singleton {
+       private static Singleton instance;
+
+       private Singleton() {}
+
+       public static Singleton getInstance() {
+           if (instance == null) {
+               instance = new Singleton();
+           }
+           return instance;
+       }
+   }
+Problem: Multiple threads may create multiple instances → race condition.
+
+ii. Synchronized Method (Thread-Safe, But Slow)
+    public class Singleton {
+        private static Singleton instance;
+
+        private Singleton() {}
+
+        public synchronized static Singleton getInstance() {
+            if (instance == null) {
+                instance = new Singleton();
+            }
+            return instance;
+        }
+    }
+👍 Safe
+👎 Slower when many threads call getInstance()
+
+iii. Double-Checked Locking + volatile (Efficient & Thread-Safe)
+This is one of the most recommended approaches.
+public class Singleton {
+    private static volatile Singleton instance;
+
+    private Singleton() {}
+
+    public static Singleton getInstance() {
+        if (instance == null) {                // First check
+            synchronized (Singleton.class) {
+                if (instance == null) {        // Second check
+                    instance = new Singleton();
+                }
+            }
+        }
+        return instance;
+    }
+}
+Why volatile?
+Without it, JVM may reorder instructions → unsafe publication.
+
+iv. Eager Initialization (Simplest & Thread-Safe)
+
+    Instance created at class loading time.
+
+    public class Singleton {
+        private static final Singleton INSTANCE = new Singleton();
+
+        private Singleton() {}
+
+        public static Singleton getInstance() {
+            return INSTANCE;
+        }
+    }
+
+
+👍 Very simple and safe
+👎 Instance created even if never used
+
+
+v. Static Inner Class (Best Practical Approach)
+
+   This uses class loading guarantees.
+
+   public class Singleton {
+
+       private Singleton() {}
+
+       private static class Holder {
+           private static final Singleton INSTANCE = new Singleton();
+       }
+
+       public static Singleton getInstance() {
+           return Holder.INSTANCE;
+       }
+   }
+
+
+   ✔ Lazy loading
+   ✔ Thread-safe
+   ✔ No synchronization overhead
+   ✔ Clean & preferred
+
+
+vi. Enum Singleton (BEST – Recommended by Effective Java)
+    public enum Singleton {
+        INSTANCE;
+
+        public void doSomething() {
+            // your logic
+        }
+    }
+
+
+    ✔ Thread-safe
+    ✔ Serialization-safe
+    ✔ No reflection attacks
+    ✔ Minimal code
+
+    Only drawback → cannot extend another class (since enum already extends Enum).
+================================================================================================
+
+What is the Prototype Design Pattern?
+-> The Prototype Pattern is a creational design pattern that allows you to create new objects by
+copying an existing object, rather than creating a new instance from scratch.
+-> The original object acts as a prototype.
+-> New objects are created by cloning the prototype.
+-> Reduces expensive object creation (especially when object setup is costly).
+
+Why use Prototype Pattern?
+-> Performance: Creating a new object from scratch can be expensive; cloning is faster.
+-> Avoid subclassing: You can create new object types at runtime without using a factory or subclass.
+-> Preserve object state: You can clone an object with all its current state.
+
+Implementation in Java
+-> Java provides Cloneable interface and clone() method to implement the prototype pattern.
+-> original and clone have same state but are different objects in memory.
+
+Types of Cloning
+
+i. Shallow Copy
+-> Uses default super.clone().
+-> Copies primitive types and references.
+-> References still point to the same objects.
+-> Person p1 = original.clone();
+
+ii. Deep Copy
+-> Clone not only the object but also the objects it references.
+-> Prevents shared mutable state.
+
+class Person implements Cloneable {
+    private Address address; // another object
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        Person cloned = (Person) super.clone();
+        cloned.address = (Address) address.clone(); // deep clone
+        return cloned;
+    }
+}
+
+When to Use Prototype Pattern
+-> Object creation is costly or complex.
+-> You want to avoid repeated initialization of similar objects.
+-> You want flexible runtime object creation.
+-> You want copying objects without knowing their concrete classes.
+
+Advantages
+-> Reduces the need for subclasses (runtime flexibility)
+-> Efficient object creation
+-> Preserves object state
+
+Disadvantages
+-> Requires careful implementation of clone() (especially for deep copy)
+-> Can be tricky with mutable fields
+-> All classes must implement Cloneable
+
+Real-Life Examples
+-> GUI frameworks: cloning UI components (buttons, panels)
+-> Game development: cloning enemies, bullets
+-> Document editors: cloning shapes, text objects
+-> Java core classes: Object.clone(), ArrayList.clone()
+================================================================================================
+Factory Method Pattern
+-> The Factory Method Pattern is a creational design pattern that provides an interface for
+creating objects but allows subclasses to alter the type of objects that will be created.
+-> The client code does not know the exact class of the object it uses.
+-> Object creation is delegated to a factory method, instead of using new directly.
+-> In short: “Define an interface for creating an object, let subclasses decide which class to
+instantiate.”
+
+Why Use Factory Method?
+-> Decouples object creation from implementation.
+-> Makes the system open for extension, closed for modification (OCP).
+-> Encapsulates object creation logic in one place.
+-> Useful when object creation is complex or depends on some parameters.
+
+
+Key Points
+-> Factory method hides the object creation logic from the client.
+-> Supports Open/Closed Principle: Adding a new shape does not change existing code.
+-> Flexible: Can return objects based on input parameters or environment.
+-> Subclass decides the actual type of object created.
+
+
+When to Use
+-> When the exact type of object is not known until runtime.
+-> When you want to decouple object creation from its usage.
+-> When adding new products frequently without modifying client code.
+
+
+
+

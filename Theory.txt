@@ -1,0 +1,12 @@
+Design Patterns
+-> Design Patterns are proven, reusable solutions to common software design problems. They provide
+templates for how to structure your code so it becomes more maintainable, flexible, and scalable.
+-> They are not code you copy-paste but best-practice approaches to solving recurring design
+challenges.
+
+Why Design Patterns?
+-> Improve code reusability
+-> Increase maintainability
+-> Encourage clean architecture
+-> Reduce coupling between components
+-> Make code easier to understand for other developers
