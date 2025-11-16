@@ -1,0 +1,44 @@
+Structural Design Pattern
+
+Adapter Design Pattern
+-> The Adapter Pattern allows two incompatible classes to work together by converting the
+interface of one class into another interface that the client expects.
+
+✔ Simple Meaning:
+Adapter acts as a bridge between two incompatible interfaces.
+
+✔ Real-Life Analogy:
+
+A mobile charger is an adapter:
+Wall socket (AC) → Adapter → Phone (needs DC)
+
+A USB-to-Type-C converter:
+USB port → Adapter → Type-C phone
+
+Why Do We Need an Adapter?
+-> You want to use an existing class, but its interface doesn't match the expected interface.
+-> You want to integrate third-party or legacy code into your system.
+-> You want to follow the Open/Closed Principle — avoid modifying existing classes.
+================================================================================================
+Bridge Design Pattern
+-> The Bridge Pattern is used to separate (decouple) an abstraction from its implementation so
+that both can vary independently.
+📌 In simple words:
+Bridge = Abstraction + Implementation (decoupled).
+You separate what you do from how you do it.
+
+Why Bridge Pattern?
+-> You want to avoid a large number of classes due to combinations
+
+Example:
+Shapes (Circle, Square)
+Colors (Red, Blue)
+Without bridge → 4 classes:
+RedCircle, BlueCircle, RedSquare, BlueSquare
+Adding more colors causes class explosion.
+With bridge →
+Abstraction: Shape
+Implementation: Color
+Only 2 hierarchies → combinations handled at runtime.
+
+================================================================================================
