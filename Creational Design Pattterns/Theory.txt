@@ -144,6 +144,7 @@ vi. Enum Singleton (BEST – Recommended by Effective Java)
 
     Only drawback → cannot extend another class (since enum already extends Enum).
 ================================================================================================
+Prototype Design Pattern
 
 What is the Prototype Design Pattern?
 -> The Prototype Pattern is a creational design pattern that allows you to create new objects by
@@ -206,7 +207,7 @@ Real-Life Examples
 -> Document editors: cloning shapes, text objects
 -> Java core classes: Object.clone(), ArrayList.clone()
 ================================================================================================
-Factory Method Pattern
+Factory Method Design Pattern
 -> The Factory Method Pattern is a creational design pattern that provides an interface for
 creating objects but allows subclasses to alter the type of objects that will be created.
 -> The client code does not know the exact class of the object it uses.
@@ -232,6 +233,52 @@ When to Use
 -> When the exact type of object is not known until runtime.
 -> When you want to decouple object creation from its usage.
 -> When adding new products frequently without modifying client code.
+=================================================================================================
+Builder Design Pattern
+-> The Builder Pattern is a creational design pattern that separates the construction of a
+complex object from its representation, allowing the same construction process to create
+different representations.
+-> It is mainly used when an object has many optional parameters or complex construction logic.
+-> Instead of having telescoping constructors (many overloaded constructors), Builder provides
+clear, readable object creation.
+
+Why Use Builder Pattern?
+-> Avoids too many constructor parameters (especially optional ones).
+-> Improves code readability.
+-> Supports immutability – objects can be made immutable once built.
+-> Simplifies complex object creation by step-by-step construction.
+=================================================================================================
+Abstract Factory Design Pattern
+-> The Abstract Factory Pattern provides an interface for creating families of related or
+dependent objects without specifying their concrete classes.
+-> Unlike the Factory Method (which creates one type of object), Abstract Factory creates multiple
+types of related objects that belong together.
+-> It’s ideal when your system needs to support multiple “themes” or “platforms”, and each theme
+has a set of related objects.
+-> In short “Provide an interface to create families of related objects without specifying their
+concrete classes.”
+
+Why Use Abstract Factory?
+-> Encapsulates object creation logic for families of related objects.
+-> Ensures consistency among products (all products in a family are compatible).
+-> Supports Open/Closed Principle – new product families can be added without changing existing
+code.
+-> Makes your system flexible for changing product families at runtime.
+
+Why avoid new in client code?
+-> Because using new directly:
+-> Couples client code to concrete classes
+-> Makes switching implementations harder
+-> Breaks Open/Closed Principle
+-> Requires code changes everywhere
+==================================================================================================
+
+
+
+
+
+
+
 
 
 
