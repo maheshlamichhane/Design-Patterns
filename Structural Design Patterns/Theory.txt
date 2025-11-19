@@ -74,4 +74,88 @@ dynamically
 conforms to Component's interface
 -> ConcreteDecorator - Adds responsibilities to the component
 
+Advantages
+-> Flexibility: More flexible than static inheritance
+-> Open/Closed Principle: You can extend object behavior without modifying existing code
+-> Single Responsibility Principle: Divide functionality into different classes with specific concerns
+-> Runtime Modification: Add or remove responsibilities at runtime
+-> Avoids Class Explosion: Prevents subclass explosion that would occur with multiple inheritance
+
+Disadvantages
+-> Complexity: Can add complexity to code with many small classes
+-> Instantiation Complexity: Complicates object instantiation
+-> Debugging Difficulty: Hard to debug decorated objects
+-> Order Dependency: Decorator order can be important and error-prone
+
+When to Use the Decorator Pattern
+-> When you need to add responsibilities to individual objects dynamically and transparently
+-> When extension by subclassing is impractical (too many combinations)
+-> When you want to add and remove responsibilities at runtime
+-> When you need to keep new classes from burdening existing code
+
+=================================================================================================
+Facade Design Pattern in Java
+
+What is the Facade Pattern?
+-> The Facade Pattern is a structural design pattern that provides a simplified interface to a
+complex subsystem of classes, libraries, or frameworks. It hides the complexities of the
+underlying system and provides a unified, higher-level interface that makes the subsystem
+easier to use.
+
+Core Concept
+-> The Facade pattern involves creating a class that serves as a front-facing interface that
+masks more complex underlying or structural code. It essentially provides a "simplified view"
+of a complex system.
+
+Key Participants
+-> Facade - Provides a simple, unified interface to the complex subsystem
+-> Subsystem Classes - Implement subsystem functionality and handle work assigned by the facade
+-> Client - Uses the facade to interact with the subsystem
+===========================================================================================
+What is the Flyweight Pattern?
+-> The Flyweight Pattern is a structural design pattern that minimizes memory usage by sharing
+as much data as possible with similar objects. It's used when you need to create a large number
+of similar objects that would otherwise consume too much memory.
+
+Core Concept
+-> The Flyweight pattern divides object properties into:
+-> Intrinsic State: Shared, immutable data that can be shared across multiple objects
+-> Extrinsic State: Unique, context-dependent data that cannot be shared
+
+Key Participants
+-> Flyweight - Interface through which flyweights can receive and act on extrinsic state.
+-> ConcreteFlyweight - Implements the Flyweight interface and stores intrinsic state
+-> FlyweightFactory - Creates and manages flyweight objects
+-> Client - Maintains references to flyweights and computes or stores extrinsic state
+
+==============================================================================================
+What is the Proxy Pattern?
+-> The Proxy Pattern is a structural design pattern that provides a surrogate or placeholder
+for another object to control access to it. A proxy acts as an intermediary between the
+client and the real object, allowing you to perform operations before or after the
+request reaches the real object.
+
+Core Concept
+-> The proxy pattern involves creating a new proxy class that implements the same interface as
+the original service object. The proxy receives client requests, does some work (access control,
+caching, logging, etc.), and then passes the request to the service object.
+
+Key Participants
+-> Subject - Common interface for RealSubject and Proxy
+-> RealSubject - The real object that the proxy represents
+-> Proxy - Maintains a reference to the RealSubject and controls access to it
+-> Client - Interacts with the Proxy as if it were the RealSubject
+
+Types of Proxy Patterns
+1. Virtual Proxy
+2. Protection Proxy
+3. Remote Proxy
+4. Cache Proxy
+5. Smart Reference Proxy
+6. Synchronization Proxy
+
+
+
+
+
 
