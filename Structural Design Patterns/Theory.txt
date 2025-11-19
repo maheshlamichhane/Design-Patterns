@@ -42,3 +42,36 @@ Implementation: Color
 Only 2 hierarchies → combinations handled at runtime.
 
 ================================================================================================
+Composite Design Pattern
+-> The Composite Pattern is used to represent hierarchical tree structures where individual
+objects and groups of objects are treated the same way.
+-> Composite lets you treat a single object and a group of objects uniformly.
+(Leaf and Composite behave the same for the client)
+
+Why Use Composite Pattern?
+-> Use it when your system represents part-whole hierarchies, such as:
+Folder → contains files and subfolders
+UI components → Button, TextBox, Panels
+Organization chart → Employee, Manager
+Menu → MenuItem, MenuCategory
+AST (Abstract Syntax Trees)
+===============================================================================================
+What is the Decorator Pattern?
+-> The Decorator Pattern is a structural design pattern that allows behavior to be added to
+individual objects, dynamically, without affecting the behavior of other objects from the same
+class. It provides a flexible alternative to subclassing for extending functionality.
+
+Core Concept
+-> The pattern involves a set of decorator classes that are used to wrap concrete components.
+Decorators mirror the type of the components they decorate (they implement the same interface
+or inherit from the same abstract class), but they add or override behavior.
+
+Key Participants
+-> Component - Defines the interface for objects that can have responsibilities added to them
+dynamically
+-> ConcreteComponent - Defines an object to which additional responsibilities can be attached
+-> Decorator - Maintains a reference to a Component object and defines an interface that
+conforms to Component's interface
+-> ConcreteDecorator - Adds responsibilities to the component
+
+
